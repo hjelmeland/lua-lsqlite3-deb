@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --buildsystem=lua --with lua
+
+override_dh_auto_install:
+	# Documentation: Change outer tags to html - Allow basic rendering in web browser
+	sed 's/nowiki>/html>/' doc/lsqlite3.wiki > doc/lsqlite3.html 
+	dh_installdocs doc/lsqlite3.html
+	dh_auto_install 
